@@ -1,11 +1,11 @@
 #!/bin/bash
 
 gen_email() {
-    local your_domain="$1"
-    local prefix_length=$((255 - ${#your_domain} - 1))
+    local whitelisted_domain="$1"
+    local prefix_length=$((255 - ${#whitelisted_domain} - 1))
 
     local random_string=$(head /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c "$prefix_length")
-    local final_email="${random_string}@${your_domain}"
+    local final_email="${random_string}@${whitelisted_domain}"
 
     echo "$final_email"
 }
